@@ -5,7 +5,7 @@ import { RootContext } from "../../context/home/rootContext";
 const Home = () => {
   const [state, dispatch] = useContext(RootContext);
   const [state1, setState1] = useState(0);
-  console.log(state);
+  // console.log(state);
 
   useEffect(() => {
     setState1(state);

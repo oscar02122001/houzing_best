@@ -15,9 +15,12 @@ code {
     monospace;
 }
 
+:root {
+  --primaryColor: #0d263b;
+  --secondaryColor: #696969;
+  --buttonColor: #0061df;
 
-.root{
-  --primary-bg-color:#0D263B;
-  --secondary-bg-color: #696969;
-  --button-bg-color: #0061DF;
+  --container: 0 130px;
+  --textDecoretion: none;
 }
+
