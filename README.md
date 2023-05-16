@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Getting Started with Oscar Jr
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is available on github [Houzing_best](https://github.com/oscar02122001/houzing_best).
+
+# can see the DEMO [Houzing_best](https://github.com/oscar02122001/houzing_best).
 
 ## Available Scripts
 
