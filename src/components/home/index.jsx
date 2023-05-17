@@ -20,6 +20,7 @@ const Home = () => {
       {/* <button onClick={() => dispatch({ type: "plus" })}>click</button> */}
       <Input width={"200px"} placeholder={"Input"} />
       <Button>Click</Button>
+      <Button type={'light'}>Netlfy</Button>
     </Container>
   );
 };
