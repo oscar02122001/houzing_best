@@ -19,6 +19,14 @@ const item = [
     private: false,
     hidden: false,
   },
+  {
+    id: useUniqueId,
+    title: "Sign In",
+    path: "/signin",
+    element: <h1>Sign In Page </h1>,
+    private: false,
+    hidden: true,
+  },
 ];
 
 export default item;
