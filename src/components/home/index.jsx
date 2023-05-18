@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Container } from "./styled";
-import { RootContext } from "../../context/home/rootContext";
+// import { RootContext } from "../../context/home/rootContext";
 // import Input from "../generics/input";
 // import Button from "../generics/button";
 import { Button, Input } from "../generics";
