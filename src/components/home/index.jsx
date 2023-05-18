@@ -18,7 +18,7 @@ const Home = () => {
     <Container>
       <h1>Home page</h1>
       {/* <button onClick={() => dispatch({ type: "plus" })}>click</button> */}
-      <Input width={"200px"} placeholder={"Input"} />
+      <Input placeholder={"Input"} />
       <Button>Click</Button>
       <Button type={'light'}>Netlfy</Button>
     </Container>

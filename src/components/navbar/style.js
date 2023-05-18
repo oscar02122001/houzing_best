@@ -43,6 +43,9 @@ export const Logo = styled(logoImg)`
   }
 `;
 
+export const LogoText = styled.h3`
+margin: 0;
+`
 export const NavItem = styled(NavLink)`
   text-decoration: var(--textDecoration);
   padding: 0 32px;
