@@ -7,13 +7,6 @@ import Filter from "../filter";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  // const location = useLocation("");
-  // const [setPath] = useState("");
-
-  // useEffect(() => {
-  //   setPath(location.pathname);
-  // }, [location.pathname]);
-
   return (
     <Container>
       <Main>
@@ -25,7 +18,6 @@ const Navbar = () => {
             {navbar.map((item, index) => {
               return (
                 !item.hidden && (
-                  // <NavItem key={item.id} active={path === item.path} to={item.path}>
                   <NavItem
                     className={({ isActive }) => isActive && "active"}
                     key={index}
