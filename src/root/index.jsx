@@ -7,6 +7,7 @@ import Navbar from "../components/navbar";
 
 const Root = () => {
   return (
+    // <BrowserRouter>
     <Routes>
       <Route element={<Navbar />}>
         {navbar.map((item) => {
@@ -18,6 +19,7 @@ const Root = () => {
       <Route path="*" element={<h1>404 Not Found</h1>} />
       <Route path="/" element={<Navigate to={"/home"} />} />
     </Routes>
+    // </BrowserRouter>
   );
 };
 
