@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container, Wrapper, Main, Section, Logo, NavItem } from "./style";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import navbar from "../../utils/navbar";
 import Button from "../generics/button";
+import Filter from "../filter";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation("");
-  const [path, setPath] = useState("");
+  // const location = useLocation("");
+  // const [setPath] = useState("");
 
-  useEffect(() => {
-    setPath(location.pathname);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   setPath(location.pathname);
+  // }, [location.pathname]);
 
   return (
     <Container>
@@ -43,6 +44,7 @@ const Navbar = () => {
           </Section>
         </Wrapper>
       </Main>
+      <Filter />
       <Outlet />
     </Container>
   );

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
+
 export const Container = styled.input`
   width: ${({ width }) => (width ? width : "100%")};
-  height: ${({ height }) => (height ? height : "44px")};
-  padding: 0 16px;
+  /* height: ${({ height }) => (height ? height : "44px")}; */
+  padding: ${({ padding }) => (padding ? padding : "12px 16px")};
   font-size: 14px;
   line-height: 20px;
   color: #0d263b;

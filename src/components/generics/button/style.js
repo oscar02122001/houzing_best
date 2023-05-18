@@ -33,9 +33,12 @@ const getType = ({ type }) => {
 
 export const Container = styled.button`
   font-size: ${({ fontSize }) => (fontSize ? fontSize : "14px")};
-  line-height: 20px;
-  height: ${({ height }) => (height ? height : "44px")};
+  padding: ${({ padding }) => (padding ? padding : "12px 16px")};
   width: ${({ width }) => (width ? width : "120px")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
   border-radius: 2px;
   cursor: pointer;
   ${getType}

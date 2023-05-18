@@ -4,6 +4,8 @@ const Input = ({
   type,
   width,
   height,
+  padding,
+  margin,
   onChange,
   value,
   defaultValue,
@@ -15,6 +17,8 @@ const Input = ({
       type={type}
       width={width}
       height={height}
+      padding={padding}
+      margin={margin}
       value={value}
       defaultValue={defaultValue}
       placeholder={placeholder}
