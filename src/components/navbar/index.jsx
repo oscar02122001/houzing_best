@@ -15,6 +15,7 @@ import Filter from "../filter";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
   // const location = useLocation("");
   // const [path, setPath] = useState("");
 
@@ -27,7 +28,7 @@ const Navbar = () => {
       <Main>
         <Wrapper>
           <Section onClick={() => navigate("/home")} logo={"true"}>
-            <Logo /> <LogoText>Houzing</LogoText>
+            <Logo /> <LogoText>Houzing </LogoText>
           </Section>
           <Section>
             {navbar.map((item, index) => {

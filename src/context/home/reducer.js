@@ -1,8 +1,10 @@
 export const reducer = (state, { type, action }) => {
   switch (type) {
     case "plus":
-      return "Working...";
+      return state + 1;
+    case "minus":
+      return state - 1;
     default:
-      return console.log("No data");
+      return "Samthing went wrong";
   }
 };
