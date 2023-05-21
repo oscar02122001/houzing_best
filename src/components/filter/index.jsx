@@ -15,6 +15,10 @@ import {
 import { Input, Button } from "../generics/index";
 
 const Filter = () => {
+  window.addEventListener("click", ({ target }) => {
+    console.log(target);
+   
+  });
   const country = useRef("");
   const region = useRef("");
   const city = useRef("");

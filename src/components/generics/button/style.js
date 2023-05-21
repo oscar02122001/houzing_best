@@ -39,9 +39,10 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   line-height: 20px;
-  border-radius: 2px;
+  border-radius: 3px;
   cursor: pointer;
   ${getType}
+  
 
   &:active {
     opacity: 0.7;

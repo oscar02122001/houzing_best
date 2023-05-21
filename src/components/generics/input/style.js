@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.input`
   display: flex;
-  width: ${({ width }) => (width ? width : "200px")} ;
+  width: ${({ width }) => (width ? width : '100%')} ;
   padding: ${({ padding }) => (padding ? padding : "12px 16px")};
   font-size: 14px;
   line-height: 20px;

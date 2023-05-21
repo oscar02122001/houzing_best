@@ -23,6 +23,10 @@ export const InputWrap = styled.div`
 `;
 export const InputsWrap = styled.div`
   padding: 30px;
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
 `;
 
 export const Section = styled.div`
@@ -39,8 +43,6 @@ export const SectionInner = styled.div`
   display: flex;
   gap: 20px;
 `;
-
-
 
 export const IconInput = styled(InputSearch)`
   position: absolute;
