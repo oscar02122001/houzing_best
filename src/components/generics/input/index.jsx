@@ -36,6 +36,7 @@ const Input = forwardRef(
       margin,
       onChange,
       value,
+      name,
       defaultValue,
       placeholder,
     },
@@ -49,6 +50,7 @@ const Input = forwardRef(
         height={height}
         padding={padding}
         margin={margin}
+        name={name}
         value={value}
         defaultValue={defaultValue}
         placeholder={placeholder}

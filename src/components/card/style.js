@@ -9,22 +9,15 @@ import { ReactComponent as Top } from "../../assets/icons/topdown.svg";
 import { ReactComponent as Heart } from "../../assets/icons/heart.svg";
 
 export const Container = styled.div`
-  max-width: 1440px;
-  width: 100%;
-  padding: var(--container);
-  margin: 0 auto;
-`;
-
-export const CardWrap = styled.div`
-  width: 381px;
-  height: 430px;
+  width: calc((100% - 40px) / 3);
+  min-height: 430px;
   border: 1px solid #e6e9ec;
   border-radius: 3px;
 `;
 
 export const ImgWrap = styled.div`
   position: relative;
-  width: 381px;
+  /* width: 100%; */
   height: 220px;
 `;
 export const TextWrap = styled.div`
@@ -32,7 +25,7 @@ export const TextWrap = styled.div`
 `;
 export const Img = styled.img`
   position: absolute;
-  width: 381px;
+  width: 100%;
   height: 220px;
   top: 0;
   left: 0;

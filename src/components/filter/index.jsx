@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Dropdown } from "antd";
+import UseReplace from "../../hooks/useReplace";
+import UseSearch from "../../hooks/useSearch";
 
 import {
   Container,
@@ -13,12 +15,13 @@ import {
   SectionInner,
 } from "./style";
 import { Input, Button } from "../generics/index";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Filter = () => {
-  window.addEventListener("click", ({ target }) => {
-    console.log(target);
-   
-  });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const query = UseSearch();
+
   const country = useRef("");
   const region = useRef("");
   const city = useRef("");
@@ -30,15 +33,42 @@ const Filter = () => {
   const max = useRef("");
   const [open, setOpen] = useState(false);
 
+  const change = ({ target: { name, value } }) => {
+    return navigate(`${location?.pathname}${UseReplace(name, value)}`);
+  };
   const inputManu = (
     <InputsWrap>
       <Section>
         <InputsTitle className="subTitle">Address</InputsTitle>
         <SectionInner>
-          <Input ref={country} placeholder={"Country"} />
-          <Input ref={region} placeholder={"Region"} />
-          <Input ref={city} placeholder={"City"} />
-          <Input ref={zip} placeholder={"Zip code"} />
+          <Input
+            defaultValue={query.get("country")}
+            onChange={change}
+            ref={country}
+            name="country"
+            placeholder={"Country"}
+          />
+          <Input
+            defaultValue={query.get("region")}
+            onChange={change}
+            ref={region}
+            name="region"
+            placeholder={"Region"}
+          />
+          <Input
+            defaultValue={query.get("city")}
+            onChange={change}
+            ref={city}
+            name="city"
+            placeholder={"City"}
+          />
+          <Input
+            defaultValue={query.get("zipCode")}
+            onChange={change}
+            ref={zip}
+            name="zipCode"
+            placeholder={"Zip code"}
+          />
         </SectionInner>
       </Section>
 
@@ -60,6 +90,7 @@ const Filter = () => {
       </Section>
     </InputsWrap>
   );
+
   const items = [
     {
       label: inputManu,
@@ -89,7 +120,13 @@ const Filter = () => {
         </div>
       </Dropdown>
 
-      <Button type={"primary"} width={"180px"}>
+      <Button
+        onClick={() => {
+          console.log(country.current.value);
+        }}
+        type={"primary"}
+        width={"180px"}
+      >
         <IconSearch /> Search
       </Button>
     </Container>
