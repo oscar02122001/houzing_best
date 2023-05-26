@@ -3,6 +3,7 @@ import { ReactComponent as Arrow } from "../../assets/icons/sliderArrow.svg";
 
 export const Container = styled.div`
   position: relative;
+  text-align: center;
   &::before {
     position: absolute;
     top: 0;

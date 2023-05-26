@@ -68,3 +68,9 @@ code {
 .ddd {
   height: 30px;
 }
+
+.slick-prev::before,
+.slick-next::before {
+  color: rgb(42, 38, 38) !important;
+ font-size: 30px !important;
+}

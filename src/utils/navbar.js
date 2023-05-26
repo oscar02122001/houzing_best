@@ -1,13 +1,20 @@
 import { useUniqueId } from "../hooks/useId";
-import HomePage from "../pages/home";
-import PropertiesPage from "../pages/properties";
+import React from "react";
+// import HomePage from "../pages/home";
+const HomePage = React.lazy(() => import("../pages/home"));
+// import PropertiesPage from "../pages/properties";
+const PropertiesPage = React.lazy(() => import("../pages/properties"));
 
 const item = [
   {
     id: useUniqueId,
     title: "Home",
     path: "/home",
-    element: <HomePage />,
+    element: (
+      <React.Suspense fallback={<h1>Loading...</h1>}>
+        <HomePage />
+      </React.Suspense>
+    ),
     private: false,
     hidden: false,
   },
@@ -15,7 +22,11 @@ const item = [
     id: useUniqueId,
     title: "Properties",
     path: "/properties",
-    element: <PropertiesPage />,
+    element: (
+      <React.Suspense fallback={<h1>Loading...</h1>}>
+        <PropertiesPage />
+      </React.Suspense>
+    ),
     private: false,
     hidden: false,
   },

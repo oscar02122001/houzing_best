@@ -6,12 +6,12 @@ import { Container } from "./styled";
 // // import user3 from "../../assets/icons/user3.svg";
 
 import Intro from "../carousel";
-
-
+import Category from "../category";
 const Home = () => {
   return (
     <Container>
       <Intro />
+      <Category />
     </Container>
   );
 };
