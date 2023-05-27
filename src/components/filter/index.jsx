@@ -29,7 +29,7 @@ const Filter = () => {
   const zip = useRef("");
   const rooms = useRef("");
   const category = useRef("");
-  const sort = useRef("");
+  // const sort = useRef("");
   const min = useRef("");
   const max = useRef("");
   const [open, setOpen] = useState(false);
