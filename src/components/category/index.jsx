@@ -17,7 +17,7 @@ const settings = {
   dots: true,
 };
 const Category = () => {
-  const [data, setData] = useState([]);
+  const [, setData] = useState([]);
   // const [title, setTitle] = useState();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const Category = () => {
       .then((res) => res.json())
       .then((res) => setData(res.data));
   }, []);
-  console.log(data);
+
   return (
     <Container>
       <Wrapper>
