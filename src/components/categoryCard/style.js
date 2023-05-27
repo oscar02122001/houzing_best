@@ -10,7 +10,7 @@ import { ReactComponent as villa } from "../../assets/icons/villa.svg";
 
 export const Container = styled.div`
   position: relative;
-  width: calc((100% - 40px) / 1);
+  width: calc((100% - 10px) / 1);
   border-radius: 3px;
   &::before {
     position: absolute;

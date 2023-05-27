@@ -3,6 +3,7 @@ import { ReactComponent as InputSearch } from "../../assets/icons/searchbig.svg"
 import { ReactComponent as Advenced } from "../../assets/icons/setting-lines.svg";
 import { ReactComponent as Search } from "../../assets/icons/loupe.svg";
 
+import { Select } from "antd";
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -56,4 +57,18 @@ export const IconAdvanced = styled(Advenced)`
 `;
 export const IconSearch = styled(Search)`
   margin-right: 9px;
+`;
+
+export const SelectAnt = styled(Select)`
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  max-width: 200px;
+  max-width: 200px;
+  width: 100%;
+
+  .ant-select-selector {
+    height: 44px !important;
+    align-items: center;
+  }
 `;

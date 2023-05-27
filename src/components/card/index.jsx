@@ -36,7 +36,9 @@ const Card = ({ data }) => {
         {/* <ImageUser src={attachments || noimg} /> */}
       </ImgWrap>
       <TextWrap>
-        <div className="subTitle">{name || "House name"} </div>
+        <div className="subTitle">
+          {name || "House name"} {houseDetails.room}{" "}
+        </div>
         <div className="location ddd" style={{ fontSize: "14px" }}>
           {address}, {city}, {country}
         </div>

@@ -30,7 +30,7 @@ export const Content = styled.div`
   color: #ffffff;
   align-items: center;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 1;
 `;
 export const Title = styled.div`
   font-family: "Montserrat";

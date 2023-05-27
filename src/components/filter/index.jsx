@@ -13,6 +13,7 @@ import {
   InputsTitle,
   Section,
   SectionInner,
+  SelectAnt,
 } from "./style";
 import { Input, Button } from "../generics/index";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -27,15 +28,25 @@ const Filter = () => {
   const city = useRef("");
   const zip = useRef("");
   const rooms = useRef("");
-  const size = useRef("");
+  const category = useRef("");
   const sort = useRef("");
   const min = useRef("");
   const max = useRef("");
   const [open, setOpen] = useState(false);
 
   const change = ({ target: { name, value } }) => {
+    console.log(name, value);
     return navigate(`${location?.pathname}${UseReplace(name, value)}`);
   };
+
+  const select = (e) => {
+    return navigate(`/properties${UseReplace("city", e)}`);
+  };
+
+  const sorted = (e) => {
+    return navigate(`/properties${UseReplace("sort", e)}`);
+  };
+
   const inputManu = (
     <InputsWrap>
       <Section>
@@ -75,17 +86,52 @@ const Filter = () => {
       <Section>
         <InputsTitle className="subTitle">Apartment info</InputsTitle>
         <SectionInner>
-          <Input ref={rooms} placeholder={"Room"} />
-          <Input ref={size} placeholder={"Size"} />
-          <Input ref={sort} placeholder={"Sort"} />
+          <Input
+            onChange={change}
+            name="room"
+            ref={rooms}
+            placeholder={"Room"}
+          />
+          <SelectAnt
+            onChange={sorted}
+            defaultValue={"Selected Sort"}
+            ref={category}
+          >
+            <SelectAnt.Option value={""}>{"Selected Sort"}</SelectAnt.Option>
+            <SelectAnt.Option value="asc">Increace</SelectAnt.Option>
+            <SelectAnt.Option value="desc">Decreace</SelectAnt.Option>
+          </SelectAnt>
+          <SelectAnt
+            onChange={select}
+            defaultValue={query.get("city") || "Selected Category"}
+            ref={category}
+          >
+            <SelectAnt.Option value={""}>
+              {"Selected Category"}
+            </SelectAnt.Option>
+            <SelectAnt.Option value="Toshkent">Toshkent</SelectAnt.Option>
+            <SelectAnt.Option value="Djizzakh">Djizzakh</SelectAnt.Option>
+            <SelectAnt.Option value="Samarqand">Samarqand</SelectAnt.Option>
+            <SelectAnt.Option value="Buxoro">Buxoro</SelectAnt.Option>
+          </SelectAnt>
         </SectionInner>
       </Section>
 
       <Section>
         <InputsTitle className="subTitle">Price</InputsTitle>
         <SectionInner>
-          <Input ref={min} placeholder={"Min price"} />
-          <Input ref={max} placeholder={"Max price"} />
+          <Input
+            onChange={change}
+            name="min_price"
+            ref={min}
+            placeholder={"Min price"}
+          />
+          <Input
+            onChange={change}
+            name="max_price"
+            ref={max}
+            placeholder={"Max price"}
+          />
         </SectionInner>
       </Section>
     </InputsWrap>
