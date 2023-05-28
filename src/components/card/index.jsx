@@ -15,7 +15,7 @@ import {
   IconsWrap,
   Icons,
 } from "./style";
-const Card = ({ data }) => {
+const Card = ({ data, margin, count, onClick }) => {
   const {
     address,
     city,
@@ -28,7 +28,7 @@ const Card = ({ data }) => {
   } = data;
 
   return (
-    <Container>
+    <Container onClick={onClick} mar={margin} num={count}>
       <ImgWrap>
         <Feature>Featured</Feature>
         <Sale>For Sale</Sale>

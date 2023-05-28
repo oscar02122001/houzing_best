@@ -3,8 +3,8 @@ import { ReactComponent as Arrow } from "../../assets/icons/sliderArrow.svg";
 
 export const Container = styled.div`
   position: relative;
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 96px;
+  padding-bottom: 96px;
 `;
 
 export const Wrapper = styled.div`
@@ -14,6 +14,12 @@ export const Wrapper = styled.div`
   width: 100%;
   padding: var(--container);
   margin: auto;
+`;
+
+export const Content = styled.div`
+  align-items: center;
+  text-align: center;
+  margin-bottom: 32px;
 `;
 
 export const SliderBtn = styled(Arrow)`
@@ -38,4 +44,3 @@ export const SliderBtn = styled(Arrow)`
     background-color: rgba(250, 250, 250, 0.5);
   }
 `;
-

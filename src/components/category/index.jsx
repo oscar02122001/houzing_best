@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Wrapper } from "./style";
+import { Container, Wrapper, Content } from "./style";
 import Slider from "react-slick";
 import CategoryCard from "../categoryCard";
 // import { Icons } from "../categoryCard/style";
@@ -34,6 +34,12 @@ const Category = () => {
   return (
     <Container>
       <Wrapper>
+        <Content>
+          <h1 className="mainTitle">Category</h1>
+          <p className="descript">
+            Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
+          </p>
+        </Content>
         <Slider {...settings}>
           {/* {data.map(({ id, city }) => {
             return <CategoryCard key={id} title={city} />;
@@ -49,31 +55,3 @@ const Category = () => {
 };
 
 export default Category;
-
-//  <CategoryCard backImg={img1} title={"Houses"} icon={<Icons.Home />} />
-//           <CategoryCard
-//             backImg={img2}
-//             title={"Apartment"}
-//             icon={<Icons.Apart />}
-//           />
-//           <CategoryCard
-//             backImg={img3}
-//             title={"Office"}
-//             icon={<Icons.Office />}
-//           />
-//           <CategoryCard backImg={img4} title={"Villa"} icon={<Icons.Villa />} />
-//         </div>
-
-//          <div>
-//           <CategoryCard backImg={img1} title={"Houses"} icon={<Icons.Home />} />
-//           <CategoryCard
-//             backImg={img2}
-//             title={"Apartment"}
-//             icon={<Icons.Apart />}
-//           />
-//           <CategoryCard
-//             backImg={img3}
-//             title={"Office"}
-//             icon={<Icons.Office />}
-//           />
-//           <CategoryCard backImg={img4} title={"Villa"} icon={<Icons.Villa />} />

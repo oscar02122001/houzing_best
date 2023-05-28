@@ -27,6 +27,8 @@ code {
 
 .mainTitle {
   font-weight: 600;
+  margin: 0;
+  margin-bottom: 8px;
   font-size: 28px;
   line-height: 36px;
   text-align: center;
@@ -47,13 +49,15 @@ code {
   padding: 0 !important;
 }
 
-.discript {
+.descript {
   font-family: "Montserrat";
   font-style: normal;
+  margin: 0;
+  /* margin-bottom: 32px; */
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #fff;
+  /* color: #fff; */
 }
 
 .location {
@@ -72,5 +76,5 @@ code {
 .slick-prev::before,
 .slick-next::before {
   color: rgb(42, 38, 38) !important;
- font-size: 30px !important;
+  font-size: 30px !important;
 }

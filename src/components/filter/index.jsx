@@ -33,7 +33,6 @@ const Filter = () => {
   const [open, setOpen] = useState(false);
 
   const change = ({ target: { name, value } }) => {
-    console.log(name, value);
     return navigate(`${location?.pathname}${UseReplace(name, value)}`);
   };
 
@@ -86,6 +85,7 @@ const Filter = () => {
         <SectionInner>
           <Input
             onChange={change}
+            defaultValue={query.get("room")}
             name="room"
             ref={rooms}
             placeholder={"Room"}
@@ -121,12 +121,14 @@ const Filter = () => {
           <Input
             onChange={change}
             name="min_price"
+            defaultValue={query.get("min_price")}
             ref={min}
             placeholder={"Min price"}
           />
           <Input
             onChange={change}
             name="max_price"
+            defaultValue={query.get("max_price")}
             ref={max}
             placeholder={"Max price"}
           />

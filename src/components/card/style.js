@@ -8,11 +8,21 @@ import { ReactComponent as SquarCard } from "../../assets/icons/squarCard.svg";
 import { ReactComponent as Top } from "../../assets/icons/topdown.svg";
 import { ReactComponent as Heart } from "../../assets/icons/heart.svg";
 
+const margin = ({ mar }) => {
+  return mar;
+};
+
+const number = ({ num }) => {
+  return num;
+};
+
 export const Container = styled.div`
-  width: calc((100% - 40px) / 3);
+  width: calc((100% - ${margin}) / ${number});
+  margin-right: 0;
   min-height: 430px;
   border: 1px solid #e6e9ec;
   border-radius: 3px;
+  cursor: pointer;
 `;
 
 export const ImgWrap = styled.div`

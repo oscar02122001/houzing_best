@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "./styled";
 import Card from "../card/index";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const { REACT_APP_BASE_URL: url } = process.env;
 
 const Properties = () => {
   const [data, setData] = useState([]);
   const { search } = useLocation();
+  const navigate = useNavigate();
+
+  const onclick = (id) => {
+    return navigate(`/ptoperties/${id}`);
+  };
 
   useEffect(() => {
     fetch(`${url}/houses/list${search}`)
@@ -18,7 +23,15 @@ const Properties = () => {
   return (
     <Container>
       {data.map((value) => {
-        return <Card key={value.id} data={value} />;
+        return (
+          <Card
+            key={value.id}
+            onClick={() => onclick(value.id)}
+            data={value}
+            margin={"40px"}
+            count={3}
+          />
+        );
       })}
     </Container>
   );
