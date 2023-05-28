@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Container, Image, Content, Title } from "./style";
 import { Button } from ".././generics";
 import img3 from "../../assets/imgs/Screenshot_20211118-150358_Outlook.jpg";
