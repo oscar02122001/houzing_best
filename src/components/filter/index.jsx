@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect } from "react";
 import { Dropdown } from "antd";
 import UseReplace from "../../hooks/useReplace";
@@ -41,7 +42,6 @@ const Filter = () => {
       url: `/categories/list`,
       headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
     }).then((res) => setData(res.data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const change = ({ target: { name, value } }) => {

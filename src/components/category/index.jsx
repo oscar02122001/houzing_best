@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Container, Wrapper, Content } from "./style";
 import Slider from "react-slick";
@@ -30,7 +31,6 @@ const Category = () => {
     }).then((res) => {
       setData(res.data);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
