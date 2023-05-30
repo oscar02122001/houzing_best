@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Wrapper, Content } from "./style";
 import Slider from "react-slick";
 import CategoryCard from "../categoryCard";
-// import { Icons } from "../categoryCard/style";
 import { useNavigate } from "react-router";
-
-const { REACT_APP_BASE_URL: url } = process.env;
+import useRequest from "../../hooks/useRequest";
 
 const settings = {
   className: "center",
@@ -17,18 +15,22 @@ const settings = {
   dots: true,
 };
 const Category = () => {
-  const [, setData] = useState([]);
-  // const [title, setTitle] = useState();
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const request = useRequest();
 
   const getTitle = (value) => {
-    navigate(`/properties?city=${value}`);
+    navigate(`/properties?ctegory=${value}`);
   };
 
   useEffect(() => {
-    fetch(`${url}/houses/list`)
-      .then((res) => res.json())
-      .then((res) => setData(res.data));
+    request({
+      url: `/categories/list`,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
+    }).then((res) => {
+      setData(res.data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -41,13 +43,15 @@ const Category = () => {
           </p>
         </Content>
         <Slider {...settings}>
-          {/* {data.map(({ id, city }) => {
-            return <CategoryCard key={id} title={city} />;
-          })} */}
-          <CategoryCard onClick={getTitle} title={"Toshkent"} />
-          <CategoryCard onClick={getTitle} title={"Samarqand"} />
-          <CategoryCard onClick={getTitle} title={"Djizzakh"} />
-          <CategoryCard onClick={getTitle} title={"Buxoro"} />{" "}
+          {data.map(({ id, name }) => {
+            return (
+              <CategoryCard
+                onClick={() => getTitle(name)}
+                key={id}
+                title={name}
+              />
+            );
+          })}
         </Slider>
       </Wrapper>
     </Container>

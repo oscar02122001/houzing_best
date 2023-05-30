@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Wrapper, Content } from "./style";
 import Card from "../card";
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
 
 const { REACT_APP_BASE_URL: url } = process.env;
 
@@ -15,6 +16,7 @@ const settings = {
   dots: true,
 };
 const Recent = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -22,6 +24,10 @@ const Recent = () => {
       .then((res) => res.json())
       .then((res) => setData(res.data || []));
   }, []);
+
+  const onClick = (id) => {
+    return navigate(`/properties/${id}`);
+  };
 
   return (
     <Container>
@@ -34,7 +40,15 @@ const Recent = () => {
         </Content>
         <Slider {...settings}>
           {data.map((value) => {
-            return <Card key={"4"} data={value} margin={"20px"} count={1} />;
+            return (
+              <Card
+                key={"4"}
+                onClick={() => onClick(value.id)}
+                data={value}
+                margin={"20px"}
+                count={1}
+              />
+            );
           })}
         </Slider>
       </Wrapper>

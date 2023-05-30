@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Wrapper, Content } from "./style";
 import Card from "../card";
 import Slider from "react-slick";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const { REACT_APP_BASE_URL: url } = process.env;
 
@@ -17,11 +17,11 @@ const settings = {
 };
 const Recommend = () => {
   const [data, setData] = useState([]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const getTitle = (value) => {
-  //   navigate(`/properties?city=${value}`);
-  // };
+  const getTitle = (value) => {
+    navigate(`/properties/${value}`);
+  };
 
   useEffect(() => {
     fetch(`${url}/houses/list`)
@@ -40,7 +40,15 @@ const Recommend = () => {
         </Content>
         <Slider {...settings}>
           {data.map((value) => {
-            return <Card key={"4"} data={value} margin={"20px"} count={1} />;
+            return (
+              <Card
+                key={"4"}
+                onClick={() => getTitle(value.id)}
+                data={value}
+                margin={"20px"}
+                count={1}
+              />
+            );
           })}
         </Slider>
       </Wrapper>

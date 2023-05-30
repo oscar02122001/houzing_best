@@ -1,9 +1,12 @@
 import { useUniqueId } from "../hooks/useId";
 import React from "react";
+import SigninPage from "../pages/signin";
+// import SignIn from "../components/signin";
 // import HomePage from "../pages/home";
 const HomePage = React.lazy(() => import("../pages/home"));
 // import PropertiesPage from "../pages/properties";
 const PropertiesPage = React.lazy(() => import("../pages/properties"));
+const HouseToolsPage = React.lazy(() => import("../pages/houseTools"));
 
 const item = [
   {
@@ -32,9 +35,21 @@ const item = [
   },
   {
     id: useUniqueId,
+    title: "House Tools",
+    path: "/properties/:id",
+    element: (
+      <React.Suspense fallback={<h1>Loading...</h1>}>
+        <HouseToolsPage />
+      </React.Suspense>
+    ),
+    private: false,
+    hidden: true,
+  },
+  {
+    id: useUniqueId,
     title: "Sign In",
     path: "/signin",
-    element: <h1>Sign In Page </h1>,
+    element: <SigninPage />,
     private: false,
     hidden: true,
   },

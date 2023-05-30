@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Dropdown } from "antd";
 import UseReplace from "../../hooks/useReplace";
 import UseSearch from "../../hooks/useSearch";
+import useRequest from "../../hooks/useRequest";
+// import { RequestContext } from "../../context/request";
 
 import {
   Container,
@@ -31,13 +33,23 @@ const Filter = () => {
   const min = useRef("");
   const max = useRef("");
   const [open, setOpen] = useState(false);
+  const request = useRequest();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    request({
+      url: `/categories/list`,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
+    }).then((res) => setData(res.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const change = ({ target: { name, value } }) => {
     return navigate(`${location?.pathname}${UseReplace(name, value)}`);
   };
 
   const select = (e) => {
-    return navigate(`/properties${UseReplace("city", e)}`);
+    return navigate(`/properties${UseReplace("category_id", e)}`);
   };
 
   const sorted = (e) => {
@@ -101,16 +113,19 @@ const Filter = () => {
           </SelectAnt>
           <SelectAnt
             onChange={select}
-            defaultValue={query.get("city") || "Selected Category"}
+            defaultValue={query.get("category") || "Selected Category"}
             ref={category}
           >
             <SelectAnt.Option value={""}>
               {"Selected Category"}
             </SelectAnt.Option>
-            <SelectAnt.Option value="Toshkent">Toshkent</SelectAnt.Option>
-            <SelectAnt.Option value="Djizzakh">Djizzakh</SelectAnt.Option>
-            <SelectAnt.Option value="Samarqand">Samarqand</SelectAnt.Option>
-            <SelectAnt.Option value="Buxoro">Buxoro</SelectAnt.Option>
+            {data.map((value) => {
+              return (
+                <SelectAnt.Option key={value.id} value={value.id}>
+                  {value.name}
+                </SelectAnt.Option>
+              );
+            })}
           </SelectAnt>
         </SectionInner>
       </Section>
