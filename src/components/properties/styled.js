@@ -6,6 +6,7 @@ export const Container = styled.div`
   gap: 20px;
   /* justify-content: space-between; */
   display: flex;
+  /* flex-direction: column; */
   flex-wrap: wrap;
   padding: var(--container);
   margin: auto;
