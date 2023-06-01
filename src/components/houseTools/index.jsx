@@ -17,7 +17,7 @@ import { useParams } from "react-router";
 import useRequest from "../../hooks/useRequest";
 import { Button, Input } from "../generics";
 import { Checkbox } from "antd";
-import Yandex from "../generics/yandex";
+// import Yandex from "../generics/yandex";
 import Recent from "../recent";
 
 const HouseTools = () => {
@@ -36,7 +36,7 @@ const HouseTools = () => {
     houseDetails,
     price,
     salePrice,
-    location,
+    // location,
     user,
     zipCode,
   } = data;
@@ -139,9 +139,9 @@ const HouseTools = () => {
               </Content.Item>
             </div>
           </Content>
-          <Yandex
+          {/* <Yandex
             center={{ center: [location?.latitude, location?.longitude] }}
-          />
+          /> */}
           {/* <Recent /> */}
         </Wrapper>
         <Wrapper className="sss" user={"true"}>
