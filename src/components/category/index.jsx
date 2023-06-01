@@ -29,7 +29,7 @@ const Category = () => {
       url: `/categories/list`,
       headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
     }).then((res) => {
-      setData(res.data);
+      setData(res?.data || []);
     });
   }, []);
 
@@ -43,7 +43,7 @@ const Category = () => {
           </p>
         </Content>
         <Slider {...settings}>
-          {data.map(({ id, name }) => {
+          {data?.map(({ id, name }) => {
             return (
               <CategoryCard
                 onClick={() => getTitle(name)}
