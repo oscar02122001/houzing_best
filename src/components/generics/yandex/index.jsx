@@ -1,5 +1,5 @@
 import React from "react";
-import { YMaps, Map, Placemark } from "react-yandex-maps";
+import { YMaps, Map } from "react-yandex-maps";
 import { Container } from "./style";
 
 const mapStyle = {
@@ -24,7 +24,7 @@ const Yandex = ({ center }) => {
             zoom: 13,
           }}
         >
-          <Placemark geometry={center.center} />
+          {/* <Placemark geometry={center.center} /> */}
         </Map>
       </YMaps>
     </Container>
