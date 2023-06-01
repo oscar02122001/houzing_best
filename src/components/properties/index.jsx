@@ -19,7 +19,6 @@ const Properties = () => {
   // };
 
   const onclick = (id) => {
-    console.log(id);
     return navigate(`/properties/${id}`);
   };
 
@@ -29,7 +28,6 @@ const Properties = () => {
     );
   }, [search]);
 
-  
   return (
     <Container>
       <ContentTitle>
