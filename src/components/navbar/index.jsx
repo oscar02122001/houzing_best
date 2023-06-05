@@ -13,8 +13,10 @@ import navbar from "../../utils/navbar";
 import Button from "../generics/button";
 import Filter from "../filter";
 import Footer from "../footer";
+import { Dropdown } from "antd";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   // const location = useLocation("");
@@ -23,6 +25,19 @@ const Navbar = () => {
   // useEffect(() => {
   //   setPath(location.pathname);
   // }, [location.pathname]);
+
+  const clickProfile = ({
+    target: {
+      dataset: { name },
+    },
+  }) => {
+    if (name === "logout") {
+      localStorage.clear();
+      navigate("/register");
+    } else {
+      navigate(`/${name}`);
+    }
+  };
 
   return (
     <Container>
@@ -48,9 +63,55 @@ const Navbar = () => {
             })}
           </Section>
           <Section>
-            <Button onClick={() => navigate("/signin")} type={"dark"}>
-              Login
-            </Button>
+            {token ? (
+              <Dropdown
+                dropdownRender={() => {
+                  return (
+                    <Section.Profile>
+                      <div
+                        data-name="myprofile"
+                        onClick={clickProfile}
+                        className="location profileItem"
+                      >
+                        My profile
+                      </div>
+                      <div
+                        data-name="properties"
+                        onClick={clickProfile}
+                        className="location profileItem"
+                      >
+                        My Properties
+                      </div>
+                      <div
+                        data-name="favourites"
+                        onClick={clickProfile}
+                        className="location profileItem"
+                      >
+                        Favourites
+                      </div>
+                      <div
+                        data-name="logout"
+                        onClick={clickProfile}
+                        className="location profileItem"
+                      >
+                        Log out
+                      </div>
+                    </Section.Profile>
+                  );
+                }}
+                trigger={["click"]}
+              >
+                <div>
+                  <Button onClick={() => {}} type={"dark"}>
+                    Profile
+                  </Button>
+                </div>
+              </Dropdown>
+            ) : (
+              <Button onClick={() => navigate("/register")} type={"dark"}>
+                Register
+              </Button>
+            )}
           </Section>
         </Wrapper>
       </Main>

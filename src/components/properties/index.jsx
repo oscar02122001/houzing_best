@@ -4,8 +4,6 @@ import { Container, ContentTitle } from "./styled";
 import Card from "../card/index";
 import { useLocation, useNavigate } from "react-router-dom";
 import useRequest from "../../hooks/useRequest";
-// import { Pagination } from "antd";
-// import UseReplace from "../../hooks/useReplace";
 
 const Properties = () => {
   const [data, setData] = useState([]);
@@ -13,19 +11,14 @@ const Properties = () => {
   const navigate = useNavigate();
   const request = useRequest();
 
-  // const toPage = (page) => {
-  //   // console.log(data.page);
-  //   return navigate(`/properties${UseReplace("page", page - 1)}`);
-  // };
-
   const onclick = (id) => {
     return navigate(`/properties/${id}`);
   };
 
   useEffect(() => {
-    request({ url: `/houses/list${search}` }).then((res) =>
-      setData(res.data || [])
-    );
+    request({ url: `/houses/list${search}` })
+      .then((res) => setData(res.data || []))
+      .catch(() => {});
   }, [search]);
 
   return (
@@ -37,10 +30,10 @@ const Properties = () => {
         </p>
       </ContentTitle>
 
-      {data.map((value) => {
+      {data?.map((value) => {
         return (
           <Card
-            key={value.id}
+            key={value?.id}
             onClick={() => onclick(value.id)}
             data={value}
             margin={"40px"}
@@ -49,9 +42,7 @@ const Properties = () => {
         );
       })}
 
-      <div>
-        {/* <Pagination onChange={toPage} defaultCurrent={0} total={data.length} /> */}
-      </div>
+      <div></div>
     </Container>
   );
 };

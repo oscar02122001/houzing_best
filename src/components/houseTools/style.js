@@ -10,6 +10,7 @@ import { ReactComponent as SquarCard } from "../../assets/icons/squarCard.svg";
 import { ReactComponent as YearBuilt } from "../../assets/icons/yearbuilt.svg";
 import { ReactComponent as User } from "../../assets/icons/user23.svg";
 
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,7 +18,6 @@ export const Container = styled.div`
   width: 100%;
   /* padding: var(--container); */
   margin: auto;
-  margin-top: 44px;
   margin-bottom: 96px;
 `;
 
@@ -55,9 +55,64 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Image = styled.img`
-  width: 500px;
-  height: 300px;
+export const ImageContainer = styled.div`
+  display: flex;
+  padding: var(--container);
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  margin-bottom: 24px;
+  margin-top: 24px;
+`;
+
+export const ImgContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-left: 20px;
+`;
+ImageContainer.Main = styled.img`
+  width: 100%;
+  max-width: 550px;
+  max-height: 360px;
+`;
+
+ImageContainer.Subimg = styled.img `
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  max-height: 190px;
+`;
+
+export const Blur = styled.div `
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: bold;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  /* identical to box height, or 122% */
+
+  letter-spacing: -0.02em;
+
+  color: #ffffff;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+`;
+Blur.Container = styled.div `
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  max-height: 190px;
 `;
 
 export const Share = styled.div`
@@ -94,6 +149,13 @@ export const Icons = {
   `,
   Love: styled(love)`
     ${iconCss}
+    &:hover {
+      background-color: #cc5040;
+      transition: 0.2s ease all;
+      path {
+        fill: #fff;
+      }
+    }
   `,
 };
 
@@ -165,5 +227,5 @@ Content.Item = styled.div`
 
 Wrapper.User = styled.div`
   display: flex;
-  align-items: center;
+  align-items: center;  
 `;

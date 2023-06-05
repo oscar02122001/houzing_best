@@ -5,7 +5,7 @@ const getType = ({ type }) => {
   switch (type) {
     case "dark":
       return {
-        background: "transparent",
+        background: "#0D263B",
         border: "1px solid #FFFFFF",
         color: "#fff",
       };
@@ -34,17 +34,20 @@ const getType = ({ type }) => {
 export const Container = styled.button`
   font-size: ${({ fontSize }) => (fontSize ? fontSize : "14px")};
   padding: ${({ padding }) => (padding ? padding : "12px 16px")};
-  width: ${({ width }) => (width ? width : "120px")};
+  width: ${({ width }) => (width ? width : "180px")};
+  height: ${({ height }) => (height ? height : "fit-content")};
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 20px;
   border-radius: 3px;
+  /* opacity: 0.2; */
+  opacity: ${({ disabled }) => (disabled ? "0.3" : "1")};
   cursor: pointer;
   ${getType}
-  
 
   &:active {
     opacity: 0.7;
+    opacity: ${({ disabled }) => (disabled ? "0.3" : "1")};
   }
 `;

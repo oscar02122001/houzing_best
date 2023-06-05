@@ -29,7 +29,35 @@ export const Section = styled.div`
   align-items: center;
   cursor: ${(prop) => prop.logo && "pointer"};
   .active {
-    color: #89eb34;
+    color: var(--buttonColor);
+  }
+`;
+
+Section.Profile = styled.div`
+  max-width: 177px;
+  padding: 16px;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 20px 38px rgba(0, 0, 0, 0.06),
+    0px 7px 46px rgba(0, 0, 0, 0.06), 0px 8px 15px rgba(0, 0, 0, 0.06);
+
+  .profileItem {
+    margin-bottom: 16px;
+    color: #000000;
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.2s ease all;
+      color: var(--buttonColor);
+      /* background-color: #444; */
+    }
+    &:active {
+      color: #444;
+    }
   }
 `;
 
@@ -44,8 +72,8 @@ export const Logo = styled(logoImg)`
 `;
 
 export const LogoText = styled.h3`
-margin: 0;
-`
+  margin: 0;
+`;
 export const NavItem = styled(NavLink)`
   text-decoration: var(--textDecoration);
   padding: 0 32px;

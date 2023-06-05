@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Content } from "./style";
 import { Button, Input } from "../generics/index";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { message } from "antd";
 
-const SignIn = () => {
-  const navigate = useNavigate();
+const SignUp = () => {
+  // const navigate = useNavigate();
   const [body, setBody] = useState({});
 
   const getData = ({ target: { name, value } }) => {
@@ -13,7 +13,7 @@ const SignIn = () => {
   };
 
   const click = () => {
-    return fetch("http://localhost:8081/api/public/auth/login", {
+    return fetch("http://localhost:8081/api/public/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,10 +22,8 @@ const SignIn = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.authenticationToken) {
-          localStorage.setItem("token", res.authenticationToken);
-          navigate("/home");
-          window.scrollTo(0, 0);
+        if (res) {
+          // navigate("/signin");
           message.info("Logged in saccessfully");
         } else {
           message.warning("Samthing went wrong");
@@ -35,24 +33,17 @@ const SignIn = () => {
 
   return (
     <Content>
-      <div className="subTitle">Sign in</div>
-      <Input
-        onChange={getData}
-        type="email"
-        name="email"
-        placeholder={"Email"}
-      />
-      <Input
-        onChange={getData}
-        type="password"
-        name="password"
-        placeholder={"Password"}
-      />
+      <div className="subTitle">Sign Up</div>
+      <Input onChange={getData} name="email" placeholder={"Email"} />
+      <Input onChange={getData} name="firstname" placeholder={"First name"} />
+      <Input onChange={getData} name="lastname" placeholder={"Last name"} />
+      <Input onChange={getData} name="password" placeholder={"Password"} />
+
       <Button onClick={click} type={"primary"} width={"100%"}>
-        Login
+        Register
       </Button>
     </Content>
   );
 };
 
-export default SignIn;
+export default SignUp;

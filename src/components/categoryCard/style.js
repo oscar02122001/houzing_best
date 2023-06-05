@@ -5,13 +5,11 @@ import { ReactComponent as apartment } from "../../assets/icons/apartment.svg";
 import { ReactComponent as office } from "../../assets/icons/officeC.svg";
 import { ReactComponent as villa } from "../../assets/icons/villa.svg";
 
-
-
-
 export const Container = styled.div`
   position: relative;
   width: calc((100% - 10px) / 1);
   border-radius: 3px;
+  cursor: pointer;
   &::before {
     position: absolute;
     width: 100%;
@@ -21,6 +19,10 @@ export const Container = styled.div`
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 3px;
     content: "";
+  }
+
+  &:hover {
+    transform: scale(1.05);
   }
 `;
 

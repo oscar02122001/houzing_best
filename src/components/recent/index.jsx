@@ -42,7 +42,7 @@ const Recent = () => {
           {data.map((value) => {
             return (
               <Card
-                key={"4"}
+                key={value?.id}
                 onClick={() => onClick(value.id)}
                 data={value}
                 margin={"20px"}

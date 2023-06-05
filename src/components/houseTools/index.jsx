@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Container,
   Wrapper,
@@ -12,33 +12,45 @@ import {
   IconRooms,
   HouseInfo,
   Description,
+  ImageContainer,
+  Blur,
+  ImgContainer,
 } from "./style";
 import { useParams } from "react-router";
 import useRequest from "../../hooks/useRequest";
 import { Button, Input } from "../generics";
 import { Checkbox } from "antd";
-// import Yandex from "../generics/yandex";
+import Yandex from "../generics/yandex";
 import Recent from "../recent";
+import { FavouriteContext } from "../../context/home";
+import { message } from "antd";
+
+import noimg from "../../assets/imgs/no-image.webp";
 
 const HouseTools = () => {
+  const token = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const houseId = useParams();
   const request = useRequest();
+  const [state] = useContext(FavouriteContext);
+  const required = useRequest();
 
   const {
     address,
     city,
     region,
-    // attachments,
+    attachments,
     country,
     // name,
     description,
     houseDetails,
     price,
     salePrice,
-    // location,
+    favorite,
+    location,
     user,
     zipCode,
+    id,
   } = data;
 
   useEffect(() => {
@@ -55,8 +67,49 @@ const HouseTools = () => {
   //   console.log(`checked = ${e.target.checked}`);
   // };
 
+  const fav = (event) => {
+    event?.stopPropagation();
+    token &&
+      required({
+        url: `/houses/addFavourite/${id}?favourite=${!favorite}`,
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token} ` },
+      }).then((res) => {
+        if (favorite) res?.success && message.warning("Successfully disliked");
+        else res?.success && message.info("Successfully liked");
+        state.refetch && state.refetch();
+      });
+  };
+
   return (
     <Container>
+      <ImageContainer>
+        <ImageContainer.Main
+          src={(attachments && attachments[0]?.imgPath) || noimg}
+          alt="test"
+        />
+        <ImgContainer>
+          {attachments &&
+            attachments?.slice(1, 5).map((value, index) => {
+              return attachments?.length > 5 && index === 3 ? (
+                <Blur.Container key={value?.id}>
+                  <ImageContainer.Subimg
+                    key={value?.id}
+                    src={value?.imgPath}
+                    alt="test"
+                  />
+                  <Blur key={value?.id}>+{attachments?.length - 5}</Blur>
+                </Blur.Container>
+              ) : (
+                <ImageContainer.Subimg
+                  key={value?.id}
+                  src={value?.imgPath}
+                  alt="test"
+                />
+              );
+            })}
+        </ImgContainer>
+      </ImageContainer>
       <Container.Inner top={"true"}>
         <Wrapper home={"true"}>
           <DetailsContent>
@@ -96,7 +149,7 @@ const HouseTools = () => {
                   <Icons.Share />
                   Share
                 </Share>
-                <Save className="location">
+                <Save className="location" onClick={fav}>
                   <Icons.Love />
                   Save
                 </Save>
@@ -139,9 +192,9 @@ const HouseTools = () => {
               </Content.Item>
             </div>
           </Content>
-          {/* <Yandex
+          <Yandex
             center={{ center: [location?.latitude, location?.longitude] }}
-          /> */}
+          />
           {/* <Recent /> */}
         </Wrapper>
         <Wrapper className="sss" user={"true"}>

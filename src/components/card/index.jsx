@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import noimg from "../../assets/imgs/no-image.webp";
+import useRequest from "../../hooks/useRequest";
+import { FavouriteContext } from "../../context/home";
+import { message } from "antd";
 import {
   Container,
   ImgWrap,
@@ -16,6 +19,10 @@ import {
   Icons,
 } from "./style";
 const Card = ({ data, margin, count, onClick }) => {
+  const required = useRequest();
+  const [state] = useContext(FavouriteContext);
+  const token = localStorage.getItem("token");
+  // const [favour, setFavour] = useState(false);
   const {
     address,
     city,
@@ -25,7 +32,23 @@ const Card = ({ data, margin, count, onClick }) => {
     houseDetails,
     price,
     salePrice,
+    favorite,
+    id,
   } = data;
+
+  const fav = (event) => {
+    event?.stopPropagation();
+    token &&
+      required({
+        url: `/houses/addFavourite/${id}?favourite=${!favorite}`,
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token} ` },
+      }).then((res) => {
+        if (favorite) res?.success && message.warning("Successfully disliked");
+        else res?.success && message.info("Successfully liked");
+        state.refetch && state.refetch();
+      });
+  };
 
   return (
     <Container onClick={onClick} mar={margin} num={count}>
@@ -68,7 +91,8 @@ const Card = ({ data, margin, count, onClick }) => {
         </div>
         <div>
           <ResizeIcon />
-          <HeartIcon />
+          <HeartIcon onClick={fav} />
+          {/* favourite={favorite} */}
         </div>
       </CardFooter>
     </Container>

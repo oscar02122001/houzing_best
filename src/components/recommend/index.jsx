@@ -42,7 +42,7 @@ const Recommend = () => {
           {data.map((value) => {
             return (
               <Card
-                key={"4"}
+                key={value?.id}
                 onClick={() => getTitle(value.id)}
                 data={value}
                 margin={"20px"}

@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, ImgWrap, Image, Content, Title } from "./style";
 import noimg from "../../assets/imgs/no-image.webp";
-
-const CatrgoryCard = ({ backImg, icon, title, onClick }) => {
+import img from '../../assets/imgs/3.png'
+const CatrgoryCard = ({ icon, title, onClick }) => {
   return (
     <Container onClick={() => onClick(title)}>
       <ImgWrap>
-        <Image src={backImg || noimg} />
+        <Image src={img || noimg} />
         <Content>
           {icon}
           <Title>{title || "Category name"}</Title>

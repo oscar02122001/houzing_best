@@ -43,14 +43,14 @@ code {
   line-height: 24px;
   color: #0d263b;
 }
-.ant-dropdown-menu:hover {
+/* .ant-dropdown-menu:hover {
   background-color: #fff !important;
-}
+} */
 
-.css-dev-only-do-not-override-15rg2km,
+/* .css-dev-only-do-not-override-15rg2km,
 .ant-dropdown-menu-item-only-child {
   padding: 0 !important;
-}
+} */
 
 .descript {
   font-family: "Montserrat";
@@ -80,4 +80,11 @@ code {
 .slick-next::before {
   color: rgb(42, 38, 38) !important;
   font-size: 30px !important;
+}
+
+.notFound {
+  width: fit-content;
+  margin: auto;
+  font-size: 26px;
+  color: #555;
 }

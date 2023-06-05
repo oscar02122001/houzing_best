@@ -7,11 +7,16 @@ import "slick-carousel/slick/slick-theme.css";
 import Root from "./root";
 import Context from "./context/index";
 
+import { QueryClient, QueryClientProvider } from "react-query";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
-    <Context>
-      <Root />
-    </Context>
+    <QueryClientProvider client={queryClient}>
+      <Context>
+        <Root />
+      </Context>
+    </QueryClientProvider>
   </React.StrictMode>
 );

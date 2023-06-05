@@ -1,21 +1,27 @@
 import styled from "styled-components";
-import { ReactComponent as InputSearch } from "../../assets/icons/searchbig.svg";
-import { ReactComponent as Advenced } from "../../assets/icons/setting-lines.svg";
-import { ReactComponent as Search } from "../../assets/icons/loupe.svg";
-
 import { Select } from "antd";
+import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
+
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   max-width: 1440px;
   width: 100%;
   padding: var(--container);
-  gap: 20px;
-  align-items: center;
+  border-radius: 3px;
   margin: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 96px;
+
+  .proTitle {
+    text-align: left;
+    margin-top: 34px;
+    margin-bottom: 32px;
+  }
+`;
+export const Wrapper = styled.div`
+  padding: 24px 30px 48px;
+  border: 1px solid #e6e9ec;
+  box-shadow: 0px 10px 30px rgba(13, 38, 59, 0.05);
+  border-radius: 3px;
+  gap: 20px;
 `;
 
 export const InputWrap = styled.div`
@@ -25,11 +31,9 @@ export const InputWrap = styled.div`
 `;
 export const InputsWrap = styled.div`
   padding: 30px;
-  max-width: 920px;
   display: flex;
   flex-direction: column;
-  background-color: #fff  ;
-  border: 1px solid #0551eb;
+  background-color: #fff;
   border-radius: 6px;
 `;
 
@@ -45,27 +49,12 @@ export const InputsTitle = styled.div`
 `;
 export const SectionInner = styled.div`
   display: flex;
+  flex-direction: ${({ fd }) => (fd ? "column" : "row")};
+  justify-content: ${({ flex }) => (flex ? "space-between" : "start")};
   gap: 20px;
 `;
 
-export const IconInput = styled(InputSearch)`
-  position: absolute;
-  margin-right: 9px;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-`;
-export const IconAdvanced = styled(Advenced)`
-  margin-right: 9px;
-`;
-export const IconSearch = styled(Search)`
-  margin-right: 9px;
-`;
-
 export const SelectAnt = styled(Select)`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   max-width: 200px;
   max-width: 200px;
   width: 100%;
@@ -75,3 +64,16 @@ export const SelectAnt = styled(Select)`
     align-items: center;
   }
 `;
+
+export const Icons = {
+  DeleteIcon: styled(Delete)`
+    width: 15px;
+    height: 15px;
+
+    &:hover {
+      & path {
+        fill: red;
+      }
+    }
+  `,
+};

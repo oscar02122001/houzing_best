@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import CategoryCard from "../categoryCard";
 import { useNavigate } from "react-router";
 import useRequest from "../../hooks/useRequest";
+import UseReplace from "../../hooks/useReplace";
 
 const settings = {
   className: "center",
@@ -16,21 +17,23 @@ const settings = {
   dots: true,
 };
 const Category = () => {
+  const token = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const request = useRequest();
 
-  const getTitle = (value) => {
-    navigate(`/properties?ctegory=${value}`);
+  const getTitle = (id) => {
+    navigate(`/properties${UseReplace(`category_id`, id)}`);
   };
 
   useEffect(() => {
-    request({
-      url: `/categories/list`,
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
-    }).then((res) => {
-      setData(res?.data || []);
-    });
+    token &&
+      request({
+        url: `/categories/list`,
+        headers: { Authorization: `Bearer ${token} ` },
+      }).then((res) => {
+        setData(res?.data || []);
+      });
   }, []);
 
   return (
@@ -46,7 +49,7 @@ const Category = () => {
           {data?.map(({ id, name }) => {
             return (
               <CategoryCard
-                onClick={() => getTitle(name)}
+                onClick={() => getTitle(id)}
                 key={id}
                 title={name}
               />

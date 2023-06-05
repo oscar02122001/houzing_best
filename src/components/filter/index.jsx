@@ -32,15 +32,16 @@ const Filter = () => {
   const category = useRef("");
   const min = useRef("");
   const max = useRef("");
-  const [open, setOpen] = useState(false);
   const request = useRequest();
   const [data, setData] = useState([]);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    request({
-      url: `/categories/list`,
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
-    }).then((res) => setData(res?.data || []));
+    token &&
+      request({
+        url: `/categories/list`,
+        headers: { Authorization: `Bearer ${token} ` },
+      }).then((res) => setData(res?.data || []));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,107 +57,6 @@ const Filter = () => {
     return navigate(`/properties${UseReplace("sort", e)}`);
   };
 
-  const inputManu = (
-    <InputsWrap>
-      <Section>
-        <InputsTitle className="subTitle">Address</InputsTitle>
-        <SectionInner>
-          <Input
-            defaultValue={query.get("country")}
-            onChange={change}
-            ref={country}
-            name="country"
-            placeholder={"Country"}
-          />
-          <Input
-            defaultValue={query.get("region")}
-            onChange={change}
-            ref={region}
-            name="region"
-            placeholder={"Region"}
-          />
-          <Input
-            defaultValue={query.get("city")}
-            onChange={change}
-            ref={city}
-            name="city"
-            placeholder={"City"}
-          />
-          <Input
-            defaultValue={query.get("zipCode")}
-            onChange={change}
-            ref={zip}
-            name="zipCode"
-            placeholder={"Zip code"}
-          />
-        </SectionInner>
-      </Section>
-
-      <Section>
-        <InputsTitle className="subTitle">Apartment info</InputsTitle>
-        <SectionInner>
-          <Input
-            onChange={change}
-            defaultValue={query.get("room")}
-            name="room"
-            ref={rooms}
-            placeholder={"Room"}
-          />
-          <SelectAnt
-            onChange={sorted}
-            defaultValue={"Selected Sort"}
-            ref={category}
-          >
-            <SelectAnt.Option value={""}>{"Selected Sort"}</SelectAnt.Option>
-            <SelectAnt.Option value="asc">Increace</SelectAnt.Option>
-            <SelectAnt.Option value="desc">Decreace</SelectAnt.Option>
-          </SelectAnt>
-          <SelectAnt
-            onChange={select}
-            defaultValue={query.get("category") || "Selected Category"}
-            ref={category}
-          >
-            <SelectAnt.Option value={""}>
-              {"Selected Category"}
-            </SelectAnt.Option>
-            {data.map((value) => {
-              return (
-                <SelectAnt.Option key={value.id} value={value.id}>
-                  {value.name}
-                </SelectAnt.Option>
-              );
-            })}
-          </SelectAnt>
-        </SectionInner>
-      </Section>
-
-      <Section>
-        <InputsTitle className="subTitle">Price</InputsTitle>
-        <SectionInner>
-          <Input
-            onChange={change}
-            name="min_price"
-            defaultValue={query.get("min_price")}
-            ref={min}
-            placeholder={"Min price"}
-          />
-          <Input
-            onChange={change}
-            name="max_price"
-            defaultValue={query.get("max_price")}
-            ref={max}
-            placeholder={"Max price"}
-          />
-        </SectionInner>
-      </Section>
-    </InputsWrap>
-  );
-
-  const items = [
-    {
-      label: inputManu,
-    },
-  ];
   return (
     <Container>
       <InputWrap>
@@ -168,26 +68,115 @@ const Filter = () => {
         />
       </InputWrap>
       <Dropdown
-        overlayStyle={{ marginTop: "10px" }}
-        menu={{ items: items }}
-        placement="bottomRight"
+        dropdownRender={() => {
+          return (
+            <InputsWrap>
+              <Section>
+                <InputsTitle className="subTitle">Address</InputsTitle>
+                <SectionInner>
+                  <Input
+                    defaultValue={query.get("country")}
+                    onChange={change}
+                    ref={country}
+                    name="country"
+                    placeholder={"Country"}
+                  />
+                  <Input
+                    defaultValue={query.get("region")}
+                    onChange={change}
+                    ref={region}
+                    name="region"
+                    placeholder={"Region"}
+                  />
+                  <Input
+                    defaultValue={query.get("city")}
+                    onChange={change}
+                    ref={city}
+                    name="city"
+                    placeholder={"City"}
+                  />
+                  <Input
+                    defaultValue={query.get("zipCode")}
+                    onChange={change}
+                    ref={zip}
+                    name="zipCode"
+                    placeholder={"Zip code"}
+                  />
+                </SectionInner>
+              </Section>
+
+              <Section>
+                <InputsTitle className="subTitle">Apartment info</InputsTitle>
+                <SectionInner>
+                  <Input
+                    onChange={change}
+                    defaultValue={query.get("room")}
+                    name="room"
+                    ref={rooms}
+                    placeholder={"Room"}
+                  />
+                  <SelectAnt
+                    onChange={sorted}
+                    defaultValue={"Selected Sort"}
+                    ref={category}
+                  >
+                    <SelectAnt.Option value={""}>
+                      {"Selected Sort"}
+                    </SelectAnt.Option>
+                    <SelectAnt.Option value="asc">Increace</SelectAnt.Option>
+                    <SelectAnt.Option value="desc">Decreace</SelectAnt.Option>
+                  </SelectAnt>
+                  <SelectAnt
+                    onChange={select}
+                    defaultValue={query.get("category") || "Selected Category"}
+                    ref={category}
+                  >
+                    <SelectAnt.Option value={""}>
+                      {"Selected Category"}
+                    </SelectAnt.Option>
+                    {data.map((value) => {
+                      return (
+                        <SelectAnt.Option key={value?.id} value={value.id}>
+                          {value.name}
+                        </SelectAnt.Option>
+                      );
+                    })}
+                  </SelectAnt>
+                </SectionInner>
+              </Section>
+
+              <Section>
+                <InputsTitle className="subTitle">Price</InputsTitle>
+                <SectionInner>
+                  <Input
+                    onChange={change}
+                    name="min_price"
+                    defaultValue={query.get("min_price")}
+                    ref={min}
+                    placeholder={"Min price"}
+                  />
+                  <Input
+                    onChange={change}
+                    name="max_price"
+                    defaultValue={query.get("max_price")}
+                    ref={max}
+                    placeholder={"Max price"}
+                  />
+                </SectionInner>
+              </Section>
+            </InputsWrap>
+          );
+        }}
         trigger={["click"]}
-        open={open}
       >
         <div>
-          <Button onClick={() => setOpen(!open)} type={"light"} width={"131px"}>
+          <Button type={"light"} width={"131px"}>
             <IconAdvanced /> Advanced
           </Button>
         </div>
       </Dropdown>
 
-      <Button
-        onClick={() => {
-          console.log(country.current.value);
-        }}
-        type={"primary"}
-        width={"180px"}
-      >
+      <Button type={"primary"} width={"180px"}>
         <IconSearch /> Search
       </Button>
     </Container>

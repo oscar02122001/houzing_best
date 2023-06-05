@@ -138,7 +138,23 @@ export const ResizeIcon = styled(Top)`
 `;
 export const HeartIcon = styled(Heart)`
   ${btnCommon}
-  background-color: #f6f8f9;
+  background-color: ${({ favourite }) => (favourite ? "#CC5040" : "#f6f8f9")};
   border-radius: 50%;
   cursor: pointer;
+
+  & path {
+    fill: ${({ favourite }) => (favourite ? "#fff" : "#696969")};
+  }
+
+  &:hover {
+    background-color: #cc5040;
+    transition: 0.2s ease all;
+    path {
+      fill: #fff;
+    }
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 `;

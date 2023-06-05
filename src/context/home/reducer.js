@@ -1,10 +1,11 @@
-export const reducer = (state, { type, action }) => {
+export const reducer = (state, { type, payload }) => {
   switch (type) {
-    case "country":
-      return state + 1;
-    case "minus":
-      return state - 1;
+    case "refetch":
+      return {
+        ...state,
+        refetch: payload,
+      };
     default:
-      return "Samthing went wrong";
+      return state;
   }
 };

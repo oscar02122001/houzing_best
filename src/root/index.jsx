@@ -12,7 +12,7 @@ const Root = () => {
       <Route element={<Navbar />}>
         {navbar.map((item) => {
           return (
-            <Route key={item.id} path={item.path} element={item.element} />
+            <Route key={item?.id} path={item.path} element={item.element} />
           );
         })}
       </Route>
